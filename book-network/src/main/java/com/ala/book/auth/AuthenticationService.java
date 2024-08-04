@@ -39,7 +39,7 @@ public class AuthenticationService {
     private String activationUrl;
     public void register(RegistrationRequest request) throws MessagingException {
         var userRole = repository.findByName("USER")
-                .orElseThrow(() -> new IllegalStateException("Role USER was not initialized"));
+                .orElseThrow(() -> new IllegalStateException("Role USER was not found"));
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
@@ -60,19 +60,19 @@ public class AuthenticationService {
                 EmailTemplateName.ActivateAccount,
                 activationUrl,
                 newToken,
-                "Account activation");
+                "Account Activation ");
     }
 
     private String generateAndSaveActivationToken(User user) {
-        String generatedToken = generateActivationCode(6);
-        var token = Token
+        String token = generateActivationCode(6);
+        var savedtoken = Token
                 .builder()
-                .token(generatedToken)
+                .token(token)
                 .expiresAt(LocalDateTime.now().plusMinutes(15))
                 .user(user)
                 .build();
-        tokenRepository.save(token);
-        return generatedToken ;
+        tokenRepository.save(savedtoken);
+        return token ;
     }
 
     private String generateActivationCode(int length) {
@@ -80,8 +80,8 @@ public class AuthenticationService {
         StringBuilder codeBuilder = new StringBuilder();
         SecureRandom secureRandom = new SecureRandom();
         for (int i = 0; i < length ; i++){
-            int randomIndex = secureRandom.nextInt(characters.length());
-            codeBuilder.append(characters.charAt(randomIndex));
+            int index= secureRandom.nextInt(characters.length());
+            codeBuilder.append(characters.charAt(index));
         }
         return codeBuilder.toString();
     }
