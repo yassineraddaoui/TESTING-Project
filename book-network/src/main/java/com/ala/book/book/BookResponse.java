@@ -22,7 +22,7 @@ public class BookResponse {
 
     private String owner;
 
-    private Byte[] cover;
+    private byte[] cover;
 
     private double rate;
 
