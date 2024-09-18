@@ -15,10 +15,12 @@ export function addToWaitingList(http:HttpClient,rootUrl:string,param:AddToWaiti
     rb.path('book-id',param['book-id'],{})
   }
   return http.request(
-    rb.build({responseType:'json',accept:'application/json',context}))
-    .pipe( filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return (r as HttpResponse<any>).clone({ body: parseFloat(String((r as HttpResponse<any>).body)) }) as StrictHttpResponse<number>;
-      }))
+    rb.build({ responseType: 'json', accept: 'application/json', context })
+  ).pipe(
+    filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
+    map((r: HttpResponse<any>) => {
+      return (r as HttpResponse<any>).clone({ body: parseFloat(String((r as HttpResponse<any>).body)) }) as StrictHttpResponse<number>;
+    })
+  );
 }
-addToWaitingList.PATH = '/book/waiting-list'
+addToWaitingList.PATH = '/books/waiting-list/{book-id}'
