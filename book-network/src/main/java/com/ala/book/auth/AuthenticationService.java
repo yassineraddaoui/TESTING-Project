@@ -53,7 +53,7 @@ public class AuthenticationService {
         sendValidationEmail(user);
     }
 
-    private void sendValidationEmail(User user) throws MessagingException {
+    private void    sendValidationEmail(User user) throws MessagingException {
         var newToken = generateAndSaveActivationToken(user);
         emailService.sendEmail(user.getEmail(),
                 user.fullName(),
@@ -86,7 +86,7 @@ public class AuthenticationService {
         return codeBuilder.toString();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) throws MessagingException {
         var auth = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -99,6 +99,8 @@ public class AuthenticationService {
 
         claims.put("fullName",user.fullName());
         var jwtToken = jwtService.generateToken(claims,user);
+        log.info(user.isEnabled()+"");
+
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
@@ -114,5 +116,15 @@ public class AuthenticationService {
         userRepository.save(user);
         savedToken.setValidateAt(LocalDateTime.now());
         tokenRepository.save(savedToken);
+
+
+    }
+
+    public void resentConfirmationToken(String email) throws MessagingException {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(()->new RuntimeException("user not found"));
+        if (!user.isEnabled()){
+            sendValidationEmail(user);
+        }
     }
 }

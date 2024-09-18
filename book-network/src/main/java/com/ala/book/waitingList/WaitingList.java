@@ -1,5 +1,6 @@
-package com.ala.book.book;
+package com.ala.book.waitingList;
 
+import com.ala.book.book.Book;
 import com.ala.book.common.BaseEntity;
 import com.ala.book.user.User;
 import jakarta.persistence.Entity;

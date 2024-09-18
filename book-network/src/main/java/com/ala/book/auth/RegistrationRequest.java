@@ -1,6 +1,7 @@
 package com.ala.book.auth;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -14,7 +15,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-
 public class RegistrationRequest {
 
     @NotEmpty(message = "Firstname is required")

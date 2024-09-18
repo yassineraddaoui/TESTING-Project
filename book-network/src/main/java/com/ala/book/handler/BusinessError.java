@@ -3,6 +3,7 @@ package com.ala.book.handler;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public enum BusinessError {
     NO_CODE(0,HttpStatus.NOT_IMPLEMENTED,"no code"),
     INCORRECT_CURRENT_PASSWORD(300,HttpStatus.BAD_REQUEST,"current password is incorrect"),
@@ -13,11 +14,8 @@ public enum BusinessError {
 
 
     ;
-    @Getter
     private final int code;
-    @Getter
     private final String description;
-    @Getter
     private final HttpStatus httpStatus;
 
     BusinessError(int code, HttpStatus httpStatus, String description) {

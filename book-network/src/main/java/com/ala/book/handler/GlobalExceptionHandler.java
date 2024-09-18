@@ -1,5 +1,6 @@
 package com.ala.book.handler;
 
+import com.ala.book.exception.OperationNotPerimttedException;
 import jakarta.mail.MessagingException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -80,5 +81,12 @@ public class GlobalExceptionHandler {
         );
 
 
+    }
+    @ExceptionHandler(OperationNotPerimttedException.class)
+    public ResponseEntity<ExceptionResponse> handle(OperationNotPerimttedException exception){
+        return ResponseEntity.status(BAD_REQUEST)
+                .body(ExceptionResponse.builder()
+                        .error(exception.getMessage())
+                        .build());
     }
 }

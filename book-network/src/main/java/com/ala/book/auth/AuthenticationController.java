@@ -29,7 +29,7 @@ public class AuthenticationController {
     }
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody  @Valid AuthenticationRequest request){
+            @RequestBody  @Valid AuthenticationRequest request) throws MessagingException {
         log.info("request from controller ::"+request);
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
@@ -38,5 +38,11 @@ public class AuthenticationController {
             @RequestParam String token
     ) throws MessagingException {
         authenticationService.activateAccount(token);
+    }
+
+    @PostMapping("/resent-CodeConfirmation")
+    public ResponseEntity<?> resentConfirmationToken(@RequestBody String email) throws MessagingException {
+        authenticationService.resentConfirmationToken(email);
+        return ResponseEntity.accepted().build();
     }
 }

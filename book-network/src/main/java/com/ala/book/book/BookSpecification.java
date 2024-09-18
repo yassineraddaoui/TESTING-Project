@@ -21,4 +21,5 @@ public class BookSpecification {
         return ((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"),bookId));
     }
 
+
 }

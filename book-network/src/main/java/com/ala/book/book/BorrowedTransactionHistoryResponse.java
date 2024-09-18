@@ -1,4 +1,4 @@
-package com.ala.book.History;
+package com.ala.book.book;
 
 import lombok.*;
 
@@ -8,6 +8,11 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class BorrowedTransactionHistoryResponse {
+    private Integer id;
+    private String title;
+    private String authorName;
+    private String isbn;
+    private double rate;
     private boolean returned;
     private boolean returnApproved;
 }
