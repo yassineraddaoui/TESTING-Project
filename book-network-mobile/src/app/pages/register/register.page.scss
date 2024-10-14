@@ -1,0 +1,30 @@
+.styled-list {
+    padding-top: 0;
+    border: 0.5px solid blue;
+    padding: 16px;
+    border-radius: 8px;
+    width: 98vw;
+    box-shadow: 20px;
+    height: auto;
+  }
+
+
+  
+.register-title h2 {
+    font-size: 1.7rem; 
+    color: #3880ff; 
+    font-weight: bold; 
+    text-align: center; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+  }
+  
+.input-class{
+    margin-bottom: 1.5vh;
+}
+
+.invalid {
+  border: 1px solid red ;
+  border-radius: 6px;
+}
+  

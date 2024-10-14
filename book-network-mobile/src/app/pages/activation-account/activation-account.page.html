@@ -1,0 +1,36 @@
+<ion-header >
+  <ion-toolbar class="ion-margin-buttom" color="primary">
+    <ion-title>Activate Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="activation-container">
+    <h2>Enter your Activation Code</h2>
+    <p class="instructions">We have sent a 6-digit activation code to your email. Please enter it below to activate your account.</p>
+
+    <ion-item class="input-item">
+      <ion-input 
+      [(ngModel)]="token"
+        type="text" 
+        label="Activation Code"
+        labelPlacement="floating"
+        maxlength="6" 
+        placeholder="123456" 
+        required 
+        clear-input 
+        inputmode="numeric"
+        >
+      </ion-input>
+    </ion-item>
+
+    <ion-button (click)="activationAccount()" expand="block" color="primary" >Submit</ion-button>
+
+    <div class="resend-container">
+      <p>Didn't receive the code?</p>
+      <ion-button size="small" fill="clear" color="secondary">
+        Resend Code
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

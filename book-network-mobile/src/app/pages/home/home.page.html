@@ -1,0 +1,52 @@
+<ion-content class="padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 90vh;">
+      <ion-col size="12" size-md="6" size-lg="4">
+        <div class="app-title ion-text-center">
+          <h1>Book Social Network</h1>
+        </div>
+        <ion-card class="login-card ">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">Login</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-input [(ngModel)]="authRequest.email"
+               type="email" 
+              label="Email"
+              
+              fill="outline"
+              placeholder="Enter email"
+              style="font-size: 4vw;"
+                   ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="authRequest.password"
+              [type]="passwordVisibale ? 'text' : 'password'" 
+              label="Password" 
+              
+              fill="outline"
+              placeholder="Enter password" 
+              style="font-size: 4vw;"
+                >
+                <ion-icon
+                [name]="passwordVisibale ? 'eye-off' : 'eye'"
+                slot="end"
+                (click)="togglePasswordVisibility()"
+                ></ion-icon>
+              </ion-input>
+          
+            </ion-item>
+            <ion-button (click)="login()" expand="block" class="ion-margin-top" style="width: 88%; margin-left: 6%;">Login</ion-button>
+            <div class="ion-text-center ion-margin-top">
+              Don't have an account?
+              <ion-router-link routerLink="/register">
+                 Register here
+              </ion-router-link>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+</ion-content>

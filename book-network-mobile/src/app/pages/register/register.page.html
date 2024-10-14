@@ -1,0 +1,94 @@
+<ion-header >
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="padding">
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 50vh;">
+      <div class="register-title ion-text-center">
+        <h2>Register</h2>
+      </div>
+      <ion-list class="styled-list">
+        <form [formGroup]="registerGroup">
+          <ion-item class="input-class ion-margin-top">
+            <ion-input
+              label="Email"
+              type="email"
+              fill="outline"
+              placeholder="email@domain.com"
+              style="width: 95vw;"
+              formControlName="email"
+              [class.invalid]="registerGroup.get('email')?.invalid && (registerGroup.get('email')?.errors?.['email'] || registerGroup.get('email')?.touched || registerGroup.get('email')?.dirty )"
+              >
+            </ion-input>
+          </ion-item>
+        
+          <ion-item class="input-class">
+            <ion-input
+              label="Firstname"
+              fill="outline"
+              placeholder="Enter your first name"
+              style="width: 95vw;"
+              formControlName="firstname"
+              [class.invalid]="registerGroup.get('firstname')?.invalid && (registerGroup.get('firstname')?.touched ||  registerGroup.get('firstname')?.dirty)"
+              >
+            </ion-input>
+          </ion-item>
+        
+          <ion-item class="input-class">
+            <ion-input
+              label="Lastname"
+              fill="outline"
+              placeholder="Enter your last name"
+              style="width: 95vw;"
+              formControlName="lastname"
+              [class.invalid]="registerGroup.get('lastname')?.invalid && (registerGroup.get('lastname')?.touched ||  registerGroup.get('lastname')?.dirty)">
+            </ion-input>
+          </ion-item>
+        
+          <ion-item class="input-class">
+            <ion-input
+              label="Password"
+              [type]="passwordVisibale ? 'text' : 'password'"
+              fill="outline"
+              placeholder="Enter password"
+              style="width: 95vw;"formControlName="password"
+              [class.invalid]="registerGroup.get('password')?.invalid && (registerGroup.get('password')?.touched || registerGroup.get('password')?.dirty)">
+
+              <ion-icon
+              slot="end"
+              [name]="passwordVisibale ? 'eye-off' :  'eye'"
+              (click)="togglePasswordVisibility()"
+              style="cursor: pointer;"
+              ></ion-icon>
+            </ion-input>
+           
+          </ion-item>
+          <ion-button (click)="register()" expand="block" fill="outline" style="width: 80vw; margin-left: 6%;">Register</ion-button>
+        
+          <div class="ion-text-center ion-margin-top ion-margin-buttom">
+            Already have an account?
+            <ion-router-link routerLink="/home">
+              Login here
+            </ion-router-link>
+          </div>
+          <div class="ion-margin-top" style="color: red;" *ngIf="registerGroup.get('password')?.errors?.['passwordStrength'] && formSubmitted">
+            Password must be at least 8 characters long, contain at least one number, and one uppercase letter.
+          </div>
+          <hr>
+
+          <div class="ion-margin-top" style="color: red;" *ngIf="uniqueEmailValidation && formSubmitted">
+            The email address you entered is already registered. Please use a different email address.
+          </div>
+        </form>
+        
+      
+      </ion-list>
+    </ion-row>
+  </ion-grid>
+</ion-content>
