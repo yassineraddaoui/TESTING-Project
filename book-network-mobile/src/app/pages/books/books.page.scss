@@ -1,0 +1,20 @@
+.book-container{
+    margin-bottom:30px;}
+
+
+
+.icon-container {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+  }
+  
+  .right-icons {
+    display: flex; 
+    gap: 8px; 
+  }
+  
+  app-rating {
+    margin-right: auto; 
+  }
+  

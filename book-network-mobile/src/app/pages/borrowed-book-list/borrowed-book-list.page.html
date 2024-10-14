@@ -1,0 +1,124 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>borrowed-book-list</ion-title>
+    <ion-button slot="end" (click)="openMenu()">
+      <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="selectedBook" class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <h2>Return and share feedback</h2>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+            <strong>Title</strong>
+          </ion-col>
+          <ion-col size="9">
+            {{ selectedBook.title }}
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="3">
+            <strong>Author</strong>
+          </ion-col>
+          <ion-col size="9">
+            {{ selectedBook.authorName }}
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="3">
+            <strong>Isbn</strong>
+          </ion-col>
+          <ion-col size="9">
+            {{ selectedBook.isbn }}
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="3">
+            <strong>Rate</strong>
+          </ion-col>
+          <ion-col size="9">
+            {{ selectedBook.rate }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <form>
+    <ion-item>
+      <ion-range [(ngModel)]="feedbackRequest.note" name="rate" min="0" max="5" step="0.5" class="ion-range">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">5</ion-label>
+      </ion-range>
+    </ion-item>
+    
+    <ion-item>
+      <app-rating [rating]="feedbackRequest.note || 0"></app-rating>
+      <ion-note>{{ feedbackRequest.note }}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Comment</ion-label>
+      <ion-textarea [(ngModel)]="feedbackRequest.comment" name="feedbackComment" placeholder="Comment" rows="4" required></ion-textarea>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row class="ion-justify-content-end">
+        <ion-col size="auto">
+          <ion-button (click)="returnBook(true)" expand="block" color="primary">
+            <ion-icon slot="start" name="save"></ion-icon>
+            Rate the Book & return
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="auto">
+          <ion-button (click)="returnBook(false)" expand="block" color="success">
+            <ion-icon slot="start" name="paper-plane"></ion-icon>
+            Return without feedback
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="auto">
+          <ion-button (click)="selectedBook = undefined" color="danger" fill="clear">
+            <ion-icon slot="start" name="close"></ion-icon>
+            Cancel
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+
+
+<ion-content *ngIf="!selectedBook">
+  <ion-list>
+    <ion-item style="height: 7vh; padding-top: 1vh;" *ngFor="let book of borrowedBooks">
+      <ion-text class="text-container">{{book.isbn}} </ion-text>&nbsp;&nbsp;&nbsp;
+      <ion-text class="title-container"><ion-icon name="book-outline"></ion-icon>&nbsp;{{book.title}} </ion-text>&nbsp;&nbsp;&nbsp;
+      <ion-text class="title-container"><ion-icon name="person-outline"></ion-icon>&nbsp;{{book.authorName}} </ion-text>
+      <ion-button (click)="returnBackBoook(book)" slot="end"><ion-icon  [class.returned]="book.returned" style="color: white;font-size: 3vh;" slot="icon-only"  name="caret-up-circle-outline"></ion-icon></ion-button>
+      
+    </ion-item>
+   
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+    loadingSpinn
+    er="bubbles"
+    loadingText="loading More"
+    >
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
