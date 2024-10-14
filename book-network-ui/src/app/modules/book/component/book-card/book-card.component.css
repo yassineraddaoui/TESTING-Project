@@ -1,0 +1,16 @@
+.card-footer{
+  background-color: rgba(128, 128, 128, 0.29);
+}
+i{
+  cursor: pointer;
+}
+div{
+  &.card{
+    max-height: 450px;
+    min-height:450px ;
+  }
+}
+img{
+  max-height: 200px;
+  min-height: 200px;
+}
