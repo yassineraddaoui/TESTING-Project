@@ -21,6 +21,7 @@ export class BooksPage implements OnInit {
   size:number=2
   isLoading:boolean=false
   bookCover: string | undefined;
+  isEmpty:boolean=false
 
   constructor(private bookService:BookService,
     private router:Router,
@@ -40,6 +41,7 @@ export class BooksPage implements OnInit {
     this.bookService.findAllBooks({page:this.page,size:this.size}).subscribe({
       next: response =>{
         this.books = [...this.books,...response.content || []]
+        this.isEmpty = this.books.length == 0;
         this.isLoading = false
         if(event){
           event.target.complete()
@@ -74,6 +76,8 @@ export class BooksPage implements OnInit {
       }
       return '';
     }
+
+
     
 
     menuOpen() {

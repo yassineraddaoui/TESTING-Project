@@ -126,10 +126,10 @@ public class BookService {
     }
 
     public Integer shareBook(Integer bookId, Authentication connectedUser) {
-        Book book =  repository.findOne(BookSpecification.withBookId( bookId))
+        Book book =  repository.findOne(BookSpecification.withBookBorrowedId( bookId))
                 .orElseThrow(() -> new EntityNotFoundException("No book found for given criteria"));
         User user = ((User) connectedUser.getPrincipal());
-        if (!Objects.equals(book.getUser().getId(), user.getId())){
+        if (!Objects.equals(book.getUser().getId(), user.getId()) || book.isArchived()){
             throw new OperationNotPerimttedException("you cannot update books shareable status");
         }
         book.setShareable(!book.isShareable());
@@ -139,7 +139,7 @@ public class BookService {
     }
 
     public Integer archivedBook(Integer bookId, Authentication connectedUser) {
-        Book book = repository.findOne(BookSpecification.withBookId(bookId))
+        Book book = repository.findOne(BookSpecification.withBookBorrowedId(bookId))
                 .orElseThrow(() ->new EntityNotFoundException("No book found for given criteria"));
         User user = ((User) connectedUser.getPrincipal());
         if (!Objects.equals(book.getUser().getId(),user.getId())){
@@ -151,7 +151,7 @@ public class BookService {
     }
 
     public Integer borrowBook(Integer bookId, Authentication connectedUser) {
-        Book book = repository.findOne(BookSpecification.withBookId(bookId))
+        Book book = repository.findOne(BookSpecification.withBookBorrowedId(bookId))
                 .orElseThrow(() -> new EntityNotFoundException("No book found for given id"));
         if (!book.isShareable() || book.isArchived()){
             throw new OperationNotPerimttedException("requested book cannot be borrowed since it is archived or not shareable");
@@ -236,7 +236,7 @@ public class BookService {
     }
 
     public void uploadBookCoverPicture(MultipartFile file, Authentication connectedUser, Integer bookId) {
-        Book book = repository.findOne(BookSpecification.withBookId(bookId))
+        Book book = repository.findOne(BookSpecification.withBookBorrowedId(bookId))
                 .orElseThrow(() -> new EntityNotFoundException("No book found for given id"));
         User user = ((User) connectedUser.getPrincipal());
         var bookCover = fileStorageService.saveFile(file,user.getId());

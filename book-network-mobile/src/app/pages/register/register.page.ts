@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistrationRequest } from '../../models/bookModels/authModels/RegistrationRequest';
+import { RegistrationRequest } from '../../models/authModels/RegistrationRequest';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { passowrdValidator } from '../../Helper/customValidators';
 import { AuthService } from '../../services/auth/auth.service';
@@ -18,7 +18,7 @@ export class RegisterPage implements OnInit {
   uniqueEmailValidation=false
   passwordVisibale:boolean = false
 
-  constructor(private authService:AuthService,private router:Router) { 
+  constructor(private authService:AuthService,private router:Router) {
     this.registerGroup = new FormGroup({
       firstname: new FormControl("",Validators.required),
       lastname: new FormControl("",Validators.required),

@@ -1,6 +1,8 @@
 package com.ala.book.book;
 
 import com.ala.book.History.BookTransactionHistory;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -18,6 +20,18 @@ public class BookSpecification {
     }
 
     public static Specification<Book> withBookId(Integer bookId){
+        return (root, query, criteriaBuilder) -> {
+            Join<Book, BookTransactionHistory> transactionJoin = root.join("histories", JoinType.INNER);
+
+            return criteriaBuilder.and(
+                    criteriaBuilder.equal(root.get("id"), bookId),
+                    criteriaBuilder.isFalse(transactionJoin.get("returnApproved"))
+            );
+        };
+
+    }
+
+    public static Specification<Book> withBookBorrowedId(Integer bookId){
         return ((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"),bookId));
     }
 

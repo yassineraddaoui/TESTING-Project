@@ -1,0 +1,11 @@
+<div class="rating">
+  <ng-container *ngFor="let _ of [].constructor(fullStars)">
+    <ion-icon style="color: yellow;" name="star"></ion-icon>
+  </ng-container>
+  <ng-container>
+    <ion-icon *ngIf="halfStar" style="color: yellow;" name="star-half"></ion-icon>
+  </ng-container>
+  <ng-container>
+    <ion-icon *ngFor="let _ of [].constructor(emptyStars)" name="star-outline"></ion-icon>
+  </ng-container>
+</div>

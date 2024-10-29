@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar >
+     <ion-back-button icon="arrow-back-outline" slot="start"></ion-back-button>
+    <ion-title>Add Book Image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="image-container">
+    <img [src]="selectedPicture" alt="..." width="100%" height="100%">
+    <div class="mt-2"></div>
+    <input (change)="onFileSelected($event)"
+  
+    type="file"
+    id="formFile"
+    accept="image/*" hidden #fileInput></div>
+    <ion-button expand="block" color="medium" (click)="fileInput.click()">Choose Image</ion-button>
+
+  <form >
+ 
+    
+
+    <div class="button-group">
+      <ion-button  (click)="saveBook()" expand="block" color="primary" type="submit" >
+        Save
+      </ion-button>
+      <ion-button (click)="cancel()" expand="block" color="medium" >
+        Cancel
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

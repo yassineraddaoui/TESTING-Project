@@ -26,6 +26,7 @@ export class BorrowedBookListPage implements OnInit {
     bookId: 0,
     comment: ''
   }
+isEmpty: boolean=false;
 
   constructor(private menu:MenuController,private bookService:BookService,private alert:AlertController,
     private feedbackService:FeedbackService,
@@ -45,6 +46,7 @@ export class BorrowedBookListPage implements OnInit {
     this.bookService.findAllBorrowedBook({page:this.page,size:this.size}).subscribe({
       next: res =>{
         this.borrowedBooks = [...this.borrowedBooks,...res.content || []]
+        this.isEmpty = this.borrowedBooks.length === 0;
         this.isLoading = false
         if(event){
           event.target.complete()
@@ -65,7 +67,6 @@ export class BorrowedBookListPage implements OnInit {
   }
 
 
-
   openMenu() {
    this.menu.open('first')
     }
@@ -82,12 +83,13 @@ export class BorrowedBookListPage implements OnInit {
       next: async res =>{
         if(withFeedback){
           this.saveFeedback()
-          this.findAllBorrowedBook()
+          this.selectedBook = undefined
+         
 
 
          } else{
           this.selectedBook = undefined
-         this.findAllBorrowedBook()
+  
          }
       }
     })

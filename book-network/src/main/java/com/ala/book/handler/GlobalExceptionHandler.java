@@ -2,6 +2,9 @@ package com.ala.book.handler;
 
 import com.ala.book.exception.OperationNotPerimttedException;
 import jakarta.mail.MessagingException;
+import jakarta.persistence.PersistenceException;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -86,6 +89,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ExceptionResponse> handle(OperationNotPerimttedException exception){
         return ResponseEntity.status(BAD_REQUEST)
                 .body(ExceptionResponse.builder()
+                        .error(exception.getMessage())
+                        .build());
+    }
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ExceptionResponse> handleException(DataIntegrityViolationException exception){
+        return ResponseEntity.status(BAD_REQUEST)
+                .body(ExceptionResponse.builder()
+                        .businessErrorCode(BusinessError.PERSiSTENCE_EXCEPTION.getCode())
+                        .businessErrorDescription(BusinessError.PERSiSTENCE_EXCEPTION.getDescription())
                         .error(exception.getMessage())
                         .build());
     }

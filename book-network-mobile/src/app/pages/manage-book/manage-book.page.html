@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-back-button icon="arrow-back-outline" slot="start"></ion-back-button>
+    <ion-title>Add New Book</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form>
+    <ion-item>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input [(ngModel)]="book.title" name="title"
+     
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">ISBN</ion-label>
+      <ion-input
+      [(ngModel)]="book.isbn" name="isbn"
+      >
+      
+     </ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">Author</ion-label>
+      <ion-input
+       name="author"
+       [(ngModel)]="book.authorName"
+       ></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">Synopsis</ion-label>
+      <ion-textarea 
+      [(ngModel)]="book.synopsis"
+      
+      rows="6" name="synopsis"></ion-textarea>
+    </ion-item>
+
+  
+    <ion-item lines="none">
+      <ion-label for="shareable">Shareable</ion-label>
+      <ion-checkbox id="shareable" slot="end" [(ngModel)]="book.shareable" name="shareable"></ion-checkbox>
+    </ion-item>
+
+
+    <div class="button-group">
+      <ion-button (click)="next()" expand="block" color="primary" type="submit" >
+        Suivant
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

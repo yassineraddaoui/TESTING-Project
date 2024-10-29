@@ -1,0 +1,27 @@
+.book-container{
+    margin-bottom:30px;
+}
+
+.icon-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+.right-icons{
+    display: flex;
+    gap: 8px;
+}
+
+.custom-border{
+    border: 2px solid red;
+}
+
+.share-border{
+    border: 2px solid greenyellow;
+}
+
+
+
+app-rating{
+    margin-right: auto;
+}

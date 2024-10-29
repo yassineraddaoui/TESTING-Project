@@ -102,7 +102,8 @@
 
 
 <ion-content *ngIf="!selectedBook">
-  <ion-list>
+  <ion-title *ngIf="isEmpty">no borrowed book found</ion-title>
+  <ion-list *ngIf="!isEmpty">
     <ion-item style="height: 7vh; padding-top: 1vh;" *ngFor="let book of borrowedBooks">
       <ion-text class="text-container">{{book.isbn}} </ion-text>&nbsp;&nbsp;&nbsp;
       <ion-text class="title-container"><ion-icon name="book-outline"></ion-icon>&nbsp;{{book.title}} </ion-text>&nbsp;&nbsp;&nbsp;

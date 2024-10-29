@@ -1,0 +1,11 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "ngx-toastr/toastr";
+.login-container{
+  width: 530px;
+  margin-top: 10%;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}

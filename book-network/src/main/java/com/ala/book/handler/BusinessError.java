@@ -11,6 +11,7 @@ public enum BusinessError {
     ACCOUNT_LOKCED(302,HttpStatus.FORBIDDEN,"user account is locked"),
     ACCOUNT_DISABLED(303,HttpStatus.FORBIDDEN,"user account is disabled"),
     BAD_CREDENTIALS(304,HttpStatus.FORBIDDEN,"login or password is incorrect"),
+    PERSiSTENCE_EXCEPTION(305,HttpStatus.BAD_REQUEST,"persistence error ")
 
 
     ;

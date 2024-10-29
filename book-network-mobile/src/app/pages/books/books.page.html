@@ -4,11 +4,12 @@
     <ion-button (click)="menuOpen()" slot="end">
       <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
     </ion-button>
-    
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
-<ion-list>
+  <ion-title *ngIf="isEmpty">No book Found</ion-title>
+<ion-list *ngIf="!isEmpty">
   <ion-item class="book-container" *ngFor="let book of books">
     <ion-card>
       <img [src]="selectedPicture(book)">

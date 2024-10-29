@@ -1,0 +1,7 @@
+{
+  "name": "book-network-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthenticationRequest } from 'src/app/models/bookModels/authModels/AuthenticationRequest';
+import { AuthenticationRequest } from 'src/app/models/authModels/AuthenticationRequest';
 import { BaseRoute } from '../../Helper/BaseRoute';
-import { AuthenticationResponse } from 'src/app/models/bookModels/authModels/AuthenticationResponse';
-import { RegistrationRequest } from 'src/app/models/bookModels/authModels/RegistrationRequest';
+import { AuthenticationResponse } from 'src/app/models/authModels/AuthenticationResponse';
+import { RegistrationRequest } from 'src/app/models/authModels/RegistrationRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class AuthService {
   private readonly authUrl= "/auth/authenticate"
   private readonly registerUrl= "/auth/register"
   private readonly activationUrl= "/auth/activate-account"
- 
+
 
   constructor(private http:HttpClient) { }
 

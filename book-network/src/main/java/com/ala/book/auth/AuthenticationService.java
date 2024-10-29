@@ -12,6 +12,7 @@ import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailSendException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -50,12 +51,14 @@ public class AuthenticationService {
                 .roles(List.of(userRole))
                 .build();
         userRepository.save(user);
-        sendValidationEmail(user);
+            sendValidationEmail(user);
+
+
     }
 
-    private void    sendValidationEmail(User user) throws MessagingException {
+    private void sendValidationEmail(User user) throws MessagingException {
         var newToken = generateAndSaveActivationToken(user);
-        emailService.sendEmail(user.getEmail(),
+        emailService.sendEmail("bjaouiala3@gmail.com",
                 user.fullName(),
                 EmailTemplateName.ActivateAccount,
                 activationUrl,

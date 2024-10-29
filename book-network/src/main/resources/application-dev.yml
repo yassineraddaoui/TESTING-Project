@@ -5,20 +5,20 @@ spring:
     password: ala
     driver-class-name: org.postgresql.Driver
   mail:
-    host: localhost
-    port: 1025
-    username: ala
-    password: ala
+    host: smtp.gmail.com
+    port: 587
+    username: bjaouiala3@gmail.com
+    password: "txyr dwts ojkp qkrb"
     properties:
-      mail:
-        smtp:
-          trust: '*'
-        auth: true
-        starttls:
-          enable: true
-        connectiontimeout: 5000
-        timeout: 3000
-        writetimeout: 5000
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true
+      mail.smtp.debug: true
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 3000
+      mail.smtp.writetimeout: 5000
+      mail.smtp.trust: smtp.gmail.com
+
 
   jpa:
     hibernate:

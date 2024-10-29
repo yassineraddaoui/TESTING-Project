@@ -23,13 +23,12 @@ public class AuthenticationController {
     public ResponseEntity<?> register(
             @Valid @RequestBody RegistrationRequest request
     ) throws MessagingException {
-
         authenticationService.register(request);
         return ResponseEntity.ok().build();
     }
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody  @Valid AuthenticationRequest request) throws MessagingException {
+            @RequestBody AuthenticationRequest request) throws MessagingException {
         log.info("request from controller ::"+request);
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }

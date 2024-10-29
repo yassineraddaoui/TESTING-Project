@@ -18,7 +18,7 @@ export class ActivationAccountPage implements OnInit {
   activationAccount(){
     this.authService.activationAccount({token:this.token}).subscribe({
       next : () => {
-        console.log(this.token)
+        this.router.navigate(['home'])
       },
       error: err =>{
       }
