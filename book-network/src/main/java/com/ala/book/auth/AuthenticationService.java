@@ -37,7 +37,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
 
 @Value("${application.mailing.frontend.activation-url}")
-    private String activationUrl;
+String activationUrl;
     public void register(RegistrationRequest request) throws MessagingException {
         var userRole = repository.findByName("USER")
                 .orElseThrow(() -> new IllegalStateException("Role USER was not found"));
@@ -47,7 +47,7 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .accountLocked(false)
-                .enabled(false)
+                .enabled(true)
                 .roles(List.of(userRole))
                 .build();
         userRepository.save(user);

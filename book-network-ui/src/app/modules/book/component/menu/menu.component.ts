@@ -3,7 +3,7 @@
   import {jwtDecode} from "jwt-decode";
   import * as SockJS from 'sockjs-client';
   import * as Stomp from 'stompjs';
-  import {Notification} from './Notification'
+  import {Notification} from './notification'
   import {ToastrService} from "ngx-toastr";
   import {CustomJwtPayload} from "./customJwtPayload";
 

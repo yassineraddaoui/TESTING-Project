@@ -21,17 +21,18 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class securityConfig {
     private final AuthenticationProvider authenticationProvider;
     private final JwtFilter jwtAuthFilter;
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req.requestMatchers(
-                        "/auth/**",
+                                "/auth/**",
                                 "/v2/api-docs",
                                 "/v3/api-docs",
                                 "/v3/api-docs/**",
-                                "/swagger-ressources" ,
+                                "/swagger-ressources",
                                 "/swagger-ressources/**",
                                 "/configuration/ui",
                                 "/configuration/security",
@@ -40,7 +41,7 @@ public class securityConfig {
                                 "/swagger-ui.html",
                                 "/ws/**")
                         .permitAll()
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll()   )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
