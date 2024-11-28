@@ -27,10 +27,8 @@
         <url/>
     </scm>
     <properties>
-        <properties>
-            <sonar.organization>yassineraddaoui</sonar.organization>
-            <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        </properties>
+        <sonar.organization>yassineraddaoui</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <java.version>17</java.version>
     </properties>
     <dependencies>
