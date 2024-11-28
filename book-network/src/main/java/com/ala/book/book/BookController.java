@@ -36,7 +36,6 @@ public class BookController {
             @RequestParam(name = "size", defaultValue = "0", required = false) int size,
             Authentication connectedUser
     ) {
-        ;
         return ResponseEntity.ok(service.findBooks(page, size, connectedUser));
     }
 
